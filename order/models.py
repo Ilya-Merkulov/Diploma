@@ -39,15 +39,15 @@ class Order(models.Model):
                                          related_name='shipping_address')
     product = models.ManyToManyField(Product, through='OrderProduct')
 
-    def get_total_cost(self):
-        return sum(item.get_cost() for item in self.items.all())
+    # def get_total_cost(self):
+    #     return sum(item.get_cost() for item in self.items.all())
 
 
 class OrderProduct(models.Model):
-    order = models.ForeignKey(Product, on_delete=models.CASCADE)
-    product = models.ForeignKey(Order, on_delete=models.CASCADE)
-    price = models.DecimalField(max_digits=10, decimal_places=2)
+    order = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='order_in_order_product')
+    product = models.ForeignKey(Order, on_delete=models.CASCADE, related_name='product_in_order_product')
+    # price = models.DecimalField(max_digits=10, decimal_places=2)
     quantity = models.PositiveIntegerField(default=1)  # verbose_name='Кількісь',
 
-    def get_cost(self):
-        return self.quantity * self.price
+    # def get_cost(self):
+    #     return self.quantity * self.price
