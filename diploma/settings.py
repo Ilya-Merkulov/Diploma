@@ -24,7 +24,7 @@ SECRET_KEY = 'django-insecure-er%uri&6v_0@ss#hg3(do!xl!uh-=w&4(9q(-#^*dw$t#q41+9
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 AUTH_USER_MODEL = "user.User"
 
@@ -53,6 +53,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
 
 REST_FRAMEWORK = {
@@ -152,3 +154,10 @@ GRAPH_MODELS = {
     'all_applications': True,
     'group_models': True,
 }
+
+CORS_ORIGIN_ALLOW_ALL = True
+
+# 'diploma/image/'
+MEDIA_URL = ""
+# os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = ""
